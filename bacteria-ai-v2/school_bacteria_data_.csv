@@ -1,0 +1,11 @@
+place_name,place_type,people_level,touch_level,clean_level,humidity_level,colonies,risk_label
+여자 화장실 문손잡이,화장실,high,high,low,high,520,high
+남자 화장실 문손잡이,화장실,high,high,mid,high,430,high
+화장실 세면대 손잡이,화장실,high,mid,mid,high,310,mid
+교무실 문손잡이,출입문,mid,high,mid,mid,260,mid
+급식실 입구 손잡이,출입문,high,high,mid,mid,340,high
+복도 난간,복도,high,mid,low,mid,280,mid
+계단 손잡이,복도,high,high,low,mid,360,high
+교실 문손잡이,출입문,mid,high,mid,mid,220,mid
+교실 책상 상판,교실,mid,mid,mid,mid,150,mid
+교실 창틀,교실,low,low,mid,low,40,low

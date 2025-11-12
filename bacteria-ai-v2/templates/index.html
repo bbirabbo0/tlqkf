@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>학교 세균 위험도 예측</title>
+</head>
+<body>
+  <h1>학교 세균 위험도 예측</h1>
+
+  <label>장소 유형:
+    <select id="place_type">
+      <option value="화장실">화장실</option>
+      <option value="출입문">출입문</option>
+      <option value="공용기기">공용기기</option>
+      <option value="복도">복도</option>
+      <option value="교실">교실</option>
+      <option value="기타">기타</option>
+    </select>
+  </label><br>
+
+  <label>사람 왕래:
+    <select id="people_level">
+      <option value="low">low</option>
+      <option value="mid">mid</option>
+      <option value="high">high</option>
+    </select>
+  </label><br>
+
+  <label>손 접촉 정도:
+    <select id="touch_level">
+      <option value="low">low</option>
+      <option value="mid">mid</option>
+      <option value="high">high</option>
+    </select>
+  </label><br>
+
+  <label>청결 상태:
+    <select id="clean_level">
+      <option value="low">low</option>
+      <option value="mid">mid</option>
+      <option value="high">high</option>
+    </select>
+  </label><br>
+
+  <label>습도:
+    <select id="humidity_level">
+      <option value="low">low</option>
+      <option value="mid">mid</option>
+      <option value="high">high</option>
+    </select>
+  </label><br>
+
+  <label>균 집락 수:
+    <input id="colonies" type="number" value="200">
+  </label><br>
+
+  <button onclick="sendPredict()">위험도 예측하기</button>
+  <h2 id="result"></h2>
+
+  <script>
+    async function sendPredict() {
+      const payload = {
+        place_type: document.getElementById("place_type").value,
+        people_level: document.getElementById("people_level").value,
+        touch_level: document.getElementById("touch_level").value,
+        clean_level: document.getElementById("clean_level").value,
+        humidity_level: document.getElementById("humidity_level").value,
+        colonies: document.getElementById("colonies").value
+      };
+
+      const res = await fetch("/predict", {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify(payload)
+      });
+
+      const data = await res.json();
+      document.getElementById("result").innerText =
+        `예측 위험도: ${data.risk_label} (신뢰도 ${data.confidence})`;
+    }
+  </script>
+</body>
+</html>
